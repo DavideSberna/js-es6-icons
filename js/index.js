@@ -150,17 +150,17 @@ function createCard(card){
                                 <li class="list-group-item">${card.name}</li>
                             </ul>
                         </div>`
-                        
+
     return createCard
 
 }
 
 function inizializzazione(){
     let content = "";
-    for(let i = 0; i < icons.length; i++){
-        let card = createCard(icons[i])
+    icons.forEach((value)=>{
+        let card = createCard(value)
         content += card;
-    }
+    })
     containerCard.innerHTML = content;
 }
 

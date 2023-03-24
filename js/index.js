@@ -140,8 +140,44 @@ const icons = [
 
 
 
-
 const containerCard = document.querySelector("#container-card")
+const containerSelect = document.querySelector("#select-category")
+
+
+function drowType(selectValue){
+    let filterType = "";
+    if(selectValue === "all"){
+        return inizializzazione()
+    } else {
+        filterType = icons.filter((value)=>{
+            if(value.type === selectValue){
+                return true
+            } else{
+                return false
+            }
+        })
+    }
+    let cont = "";
+    filterType.forEach((value)=>{
+        let type = drow(value)
+        cont += type
+    })
+    containerCard.innerHTML = cont;
+}
+
+function drow(value){
+    const createCar = `<div class="col-2 card d-flex justify-content-center align-content-center">
+                            <ul class="pt-2 pb-2 ps-0 m-0 text-center">
+                                <li class="list-group-item"><a href="#"><i class = "${value.prefix}${value.family} ${value.prefix}${value.name}" style="color: ${value.color};"></i></a></li>
+                                <li class="list-group-item">${value.name}</li>
+                            </ul>
+                        </div>`
+
+    return createCar
+    
+
+}
+
 
 function createCard(card){
     const createCard = `<div class="col-2 card d-flex justify-content-center align-content-center">
@@ -155,13 +191,45 @@ function createCard(card){
 
 }
 
+
+
+
 function inizializzazione(){
     let content = "";
     icons.forEach((value)=>{
         let card = createCard(value)
-        content += card;
+        content += card;  
     })
     containerCard.innerHTML = content;
 }
-
 inizializzazione()
+
+containerSelect.addEventListener("change", selectType);
+function selectType(){ 
+  drowType(this.value)
+}
+
+
+
+// function createSelect(value){
+//     const createSelect =`<select name="select-category" id="select-category">
+//                             <option value="All">${value.name}</option>
+//                             <option value="Animal">${value.name}</option>
+//                             <option value="Vegetables">Vegetables</option>
+//                             <option value="User">User</option>
+//                         </select>`
+//     let contentSelect 
+//     return createSelect
+// }
+
+
+
+
+// if(this.value === "Animal"){
+        
+//     console.log("animali")
+// } else if(this.value === "Vegetables"){
+//     console.log("Vegetables")
+// } else{
+//     console.log("users")
+// }

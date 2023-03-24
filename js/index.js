@@ -141,7 +141,7 @@ const icons = [
 
 
 const containerCard = document.querySelector("#container-card")
-const containerSelect = document.querySelector("#select-category")
+const select = document.querySelector("#select-category")
 
 
 function drowType(selectValue){
@@ -202,34 +202,40 @@ function inizializzazione(){
     })
     containerCard.innerHTML = content;
 }
-inizializzazione()
 
-containerSelect.addEventListener("change", selectType);
-function selectType(){ 
-  drowType(this.value)
+function createArrayType(){
+    let arrComplete = []
+    icons.filter((value)=>{
+        let array = value.type;
+        if(!arrComplete.includes(array)){
+            arrComplete.push(array)
+        }
+    })
+    return arrComplete
+    
 }
 
 
-
-// function createSelect(value){
-//     const createSelect =`<select name="select-category" id="select-category">
-//                             <option value="All">${value.name}</option>
-//                             <option value="Animal">${value.name}</option>
-//                             <option value="Vegetables">Vegetables</option>
-//                             <option value="User">User</option>
-//                         </select>`
-//     let contentSelect 
-//     return createSelect
-// }
-
+function createSelect(){
+   let arrayFunction = createArrayType()
+   arrayFunction.unshift("all")
+   let section = "";
+   arrayFunction.forEach((value)=>{
+    console.log(value)
+     section += `<option value="${value}">${value}</option>`
+    
+   })
+   select.innerHTML = section;
 
 
+}
 
-// if(this.value === "Animal"){
-        
-//     console.log("animali")
-// } else if(this.value === "Vegetables"){
-//     console.log("Vegetables")
-// } else{
-//     console.log("users")
-// }
+function selectType(){ 
+    drowType(this.value)
+}
+
+
+createSelect()
+inizializzazione()
+select.addEventListener("change", selectType);
+

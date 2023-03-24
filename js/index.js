@@ -150,6 +150,7 @@ function createCard(card){
                                 <li class="list-group-item">${card.name}</li>
                             </ul>
                         </div>`
+                        
     return createCard
 
 }
